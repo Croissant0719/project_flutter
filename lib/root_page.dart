@@ -17,16 +17,36 @@ enum AuthStatus {
 
 class _RootPageState extends State<RootPage> {
 
-  AuthStatus _authStatus = AuthStatus.notSignedIn;
+  AuthStatus authStatus = AuthStatus.notSignedIn;
+
+  inisState() {
+    super.initState();
+    widget.auth.currentUser().then((userId) {
+      setState(() {
+        // authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+      });
+    });
+  }
+
+  void _signedIn() {
+    setState(() {
+      authStatus = AuthStatus.signedIn;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    switch (_authStatus) {
+    switch (authStatus) {
       case AuthStatus.notSignedIn:
-        return new LoginPage(auth: widget.auth);
+        return new LoginPage(
+          auth: widget.auth,
+          onSignedIn: _signedIn,
+        );
       case AuthStatus.signedIn:
-        return new Container(
-          child: new Text('Welcom'),
+        return new Scaffold( 
+          body: new Container(
+            child: new Text('Welcom')
+          )
         );
     }
   }
