@@ -43,7 +43,7 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        return new Scaffold( 
+        return new Scaffold(
           body: new Container(
             child: new Text('Welcom')
           )

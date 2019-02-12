@@ -5,7 +5,7 @@ class LoginPage extends StatefulWidget {
   LoginPage({this.auth, this.onSignedIn});
   final BaseAuth auth;
   final VoidCallback onSignedIn;
-  
+
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 }
